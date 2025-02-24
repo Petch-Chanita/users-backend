@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 
 	"users-backend/models"
 	"users-backend/routes"
@@ -36,6 +37,10 @@ func main() {
 		c.JSON(200, gin.H{"message": "pong"})
 	})
 	// เริ่มต้นเซิร์ฟเวอร์
-	r.Run(":8080")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	r.Run(":" + port)
 
 }
